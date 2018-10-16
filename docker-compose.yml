@@ -1,0 +1,57 @@
+version: '2'
+services:
+  nats:
+    build: "./nats/amd64"
+    hostname: "nats"
+  redis:
+    image: redis:4.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+  postgres:
+    ports:
+      - '5436:5432' # 5436 <- change this value
+    restart: always
+    image: postgres:9.6.5-alpine
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 123456
+        POSTGRES_DB: chat
+    hostname: "postgres"
+  db:
+    build: https://github.com/armsuro/chat-db.git
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_PORT=5432
+  chat:
+    build: "./microservice-chat"
+    ports:
+      - "7070:7070"
+    links:
+      - "nats:nats"
+    environment:
+      - NODE_ENV=development
+      - NATS_SERVER_URL=nats://nats:4222
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_PORT=5432
+  api:
+    build: "./microservice-api"
+    ports:
+      - "4567:4567"
+    links:
+      - "nats:nats"
+    environment:
+      - NODE_ENV=development
+      - NATS_SERVER_URL=nats://nats:4222
+      - REDIS_HOST=redis
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_PORT=5432
+  client:
+    build: "./client"
+    ports:
+      - "8000:8080"

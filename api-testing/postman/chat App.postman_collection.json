@@ -1,0 +1,368 @@
+{
+	"id": "1c01b707-40ad-1841-b450-486bb1f03baf",
+	"name": "chat App",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"owner": "321992",
+			"lastUpdatedBy": "321992",
+			"lastRevision": 5193586451,
+			"folder": null,
+			"id": "3dc28f8c-4ed9-e366-911a-d5e376c66f26",
+			"name": "auth",
+			"description": "",
+			"variables": null,
+			"auth": null,
+			"events": null,
+			"order": [
+				"0632198b-ac82-6ce5-cc51-333c53db56f1",
+				"46faeb09-d3ba-dd89-f54c-0929ccabd6fa"
+			],
+			"folders_order": []
+		},
+		{
+			"owner": "321992",
+			"lastUpdatedBy": "321992",
+			"lastRevision": 5202421773,
+			"folder": null,
+			"id": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"name": "quote",
+			"description": "",
+			"variables": null,
+			"auth": null,
+			"events": null,
+			"order": [
+				"9d9507b3-2dc2-1a83-05d1-8c68353e9181",
+				"da664e85-4615-7939-9950-5432189d1dca",
+				"eb18f401-5be0-67e4-613e-b7462938a397",
+				"295f813a-3a86-55ca-1317-b2fa345257ea",
+				"4e010e0d-c708-5c78-bd5e-455ebc83ea57",
+				"80e19d76-702d-f270-13e5-48c682ebc1fa"
+			],
+			"folders_order": []
+		}
+	],
+	"folders_order": [
+		"3dc28f8c-4ed9-e366-911a-d5e376c66f26",
+		"99cf8be0-d9dd-75d6-a432-c36e13cac666"
+	],
+	"timestamp": 0,
+	"owner": "321992",
+	"public": false,
+	"requests": [
+		{
+			"folder": "3dc28f8c-4ed9-e366-911a-d5e376c66f26",
+			"id": "0632198b-ac82-6ce5-cc51-333c53db56f1",
+			"name": "Login",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var body = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('token', body.data.token);"
+						]
+					}
+				}
+			],
+			"rawModeData": "{\"username\": \"user1\", \"password\": \"password\" }",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Content-Type: application/json\n",
+			"method": "POST",
+			"pathVariables": {},
+			"url": "{{host}}/auth/login",
+			"preRequestScript": null,
+			"tests": "var body = JSON.parse(responseBody);\npostman.setGlobalVariable('token', body.data.token);",
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "295f813a-3a86-55ca-1317-b2fa345257ea",
+			"name": "Assign quote ",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": null,
+			"rawModeData": "{\"name\": \"test1\", \"id\": 1}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "PUT",
+			"pathVariables": {},
+			"url": "{{host}}/quote/assign",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"id": "46faeb09-d3ba-dd89-f54c-0929ccabd6fa",
+			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"description": ""
+				}
+			],
+			"url": "{{host}}/auth/logout",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Logout",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1539536910637,
+			"version": 2,
+			"responses": [],
+			"tests": "var body = JSON.parse(responseBody);\npostman.setGlobalVariable('token', body.data.token);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "3dc28f8c-4ed9-e366-911a-d5e376c66f26",
+			"rawModeData": "{\"username\": \"user1\", \"password\": \"password\" }"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "4e010e0d-c708-5c78-bd5e-455ebc83ea57",
+			"name": "Delete",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": null,
+			"rawModeData": "{\"name\": \"test1\", \"id\": 2}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "DELETE",
+			"pathVariables": {},
+			"url": "{{host}}/quote/{{quoteId}}",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "80e19d76-702d-f270-13e5-48c682ebc1fa",
+			"name": "Waiting quote ",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": null,
+			"rawModeData": "{\"name\": \"test1\", \"id\": 1}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "{{host}}/quote/waiting",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "9d9507b3-2dc2-1a83-05d1-8c68353e9181",
+			"name": "Create",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var body = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('quoteId', body.data.id);"
+						]
+					}
+				}
+			],
+			"rawModeData": "{\"name\": \"test\"}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "POST",
+			"pathVariables": {},
+			"url": "{{host}}/quote",
+			"preRequestScript": null,
+			"tests": "var body = JSON.parse(responseBody);\npostman.setGlobalVariable('quoteId', body.data.id);",
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "da664e85-4615-7939-9950-5432189d1dca",
+			"name": "Update",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": null,
+			"rawModeData": "{\"name\": \"test1\", \"id\": 2}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "PUT",
+			"pathVariables": {},
+			"url": "{{host}}/quote/{{quoteId}}",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		},
+		{
+			"folder": "99cf8be0-d9dd-75d6-a432-c36e13cac666",
+			"id": "eb18f401-5be0-67e4-613e-b7462938a397",
+			"name": "Get All",
+			"dataMode": "raw",
+			"data": [],
+			"auth": null,
+			"events": null,
+			"rawModeData": "{\"name\": \"test1\", \"id\": 2}",
+			"descriptionFormat": "html",
+			"description": null,
+			"variables": null,
+			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+			"method": "GET",
+			"pathVariables": {},
+			"url": "{{host}}/quote",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": null,
+			"helperAttributes": null,
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"pathVariableData": [],
+			"responses": [],
+			"collectionId": "1c01b707-40ad-1841-b450-486bb1f03baf"
+		}
+	]
+}

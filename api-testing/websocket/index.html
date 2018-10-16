@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Test socket.io</title>
+	<script src="http://localhost:4567/socket.io/socket.io.js"></script>
+	<script>
+	const socket = io.connect("http://localhost:4567", {
+	   query : {
+	      authorization:"Api Token"
+	   }
+	});
+	socket.on('connect', (data) => {
+		console.log("Conection successful.")
+	});
+	socket.on('newMessage', (data) => {
+		console.log(data);
+	});
+	socket.on('messages', (data) => {
+		console.log(data);
+	});
+
+	setTimeout(()=>{
+		socket.emit('join', {quote_id: 1});
+	}, 2000)
+
+	setTimeout(()=>{
+		socket.emit('sendMessage', {
+			quote_id: 1,
+			text: "Hello my friend"
+		})
+	}, 5000)
+	</script>
+</head>
+<body>
+Websocket test
+</body>
+</html>

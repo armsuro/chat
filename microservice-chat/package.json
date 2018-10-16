@@ -1,0 +1,57 @@
+{
+  "name": "microservice-chat",
+  "version": "1.0.0",
+  "description": "This is structure for all microservices",
+  "main": "index.js",
+  "scripts": {
+    "docker-build": "docker build . --tag odds-feed:latest",
+    "build": "npm run clean && babel app -d build",
+    "clean": "rm -rf build && mkdir build",
+    "start": "nodemon",
+    "lint": "eslint app",
+    "doc": "jsdoc -r ./app",
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "migrate:undo:all": "./node_modules/.bin/sequelize db:migrate:undo:all"
+  },
+  "engines": {
+    "node": ">= 6",
+    "npm": ">= 3"
+  },
+  "author": "Suren Gasparyan <suren.gasparyan1997@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.18.0",
+    "bcrypt": "^1.0.0",
+    "bluebird": "^3.5.1",
+    "db": "https://github.com/armsuro/chat-db",
+    "broker": "https://github.com/armsuro/nats-broker",
+    "dotenv": "^4.0.0",
+    "lodash": "^4.16.4",
+    "moment": "^2.22.2",
+    "redis": "^2.8.0",
+    "sequelize": "^4.38.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.8.1",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-babel": "^4.0.0",
+    "faker": "^3.1.0",
+    "isparta": "^4.0.0",
+    "jsdoc": "^3.5.5",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.17.2"
+  }
+}

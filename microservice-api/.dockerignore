@@ -1,0 +1,7 @@
+.git
+LICENSE
+README.md
+.env
+node_modules
+package-lock.json
+out

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Controllers/quote.controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Controllers/quote.controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//Import modules hire
+import {
+    chat
+} from 'db';
+import BaseController from './base.controller';
+import Constants from '../config/constants';
+
+/**
+ * QuoteController class working with quote data.
+ * extends BaseController
+ * @class
+ */
+class QuoteController extends BaseController {
+    /**
+     * create function create new quote
+     * @param {Object} {body} - quote data
+     * @param {Object} res  - Response
+     * @function
+     */
+    async create({
+        body
+    }, res) {
+        try {
+            const newQuote = await chat.Quote.create({
+                'name': body.data.name,
+                'customer_id': body.user.id
+            });
+            return res.send({
+                'status': 'success',
+                'data': newQuote
+            })
+        } catch (err) {
+            console.error(err)
+            res.send(err);
+        }
+    }
+    /**
+     * update function update quote
+     * @param {body} Object - quote data
+     * @param res Object - Response
+     * @function
+     */
+    async update({
+        body
+    }, res) {
+        try {
+            const quoteData = await chat.Quote.findOne({
+                'where': {
+                    'id': body.data.id,
+                }
+            });
+            if (quoteData.customer_id == body.user.id) {
+                quoteData.name = body.data.name;
+                await quoteData.save();
+                return res.send({
+                    'status': 'success',
+                    'data': quoteData,
+                })
+            } else {
+                return res.send({
+                    'status': 'unavailable'
+                })
+            }
+        } catch (err) {
+            console.error(err)
+            res.send(err);
+        }
+    }
+    /**
+     * destroy function delete quote
+     * @param {body} Object - quote data
+     * @param res Object - Response
+     * @function
+     */
+    async destroy({
+        body
+    }, res) {
+        try {
+            const quoteData = await chat.Quote.findOne({
+                'where': {
+                    'id': body.data.id
+                }
+            });
+            if (quoteData.customer_id == body.user.id) {
+                quoteData.name = body.data.name;
+                await quoteData.destroy();
+                return res.send({
+                    'status': 'success',
+                    'data': quoteData
+                })
+            } else {
+                return res.send({
+                    'status': 'unavailable'
+                })
+            }
+        } catch (err) {
+            console.error(err)
+            res.send(err);
+        }
+    }
+    /**
+     * getAll function get all quotes
+     * @param {body} Object - quote data
+     * @param res Object - Response
+     * @function
+     */
+    async getAll({
+        body
+    }, res) {
+        try {
+            const where = body.user.type == Constants.types.customer ? {
+                'customer_id': body.user.id
+            } : {
+                'repairshop_id': body.user.id
+            };
+            const quoteData = await chat.Quote.findAll({
+                where
+            });
+            return res.send({
+                'status': 'success',
+                'data': quoteData
+            })
+        } catch (err) {
+            console.error(err)
+            res.send(err);
+        }
+    }
+
+    /**
+     * assign function assign repairshop to quote
+     * @param {body} Object - quote data
+     * @param res Object - Response
+     * @function
+     */
+    async assign({
+        body
+    }, res) {
+        try {
+            await chat.Quote.update({
+                repairshop_id: body.user.id
+            }, {
+                'where': {
+                    'id': body.data.id
+                }
+            });
+            return res.send({
+                'status': 'success',
+                'data': []
+            })
+        } catch (err) {
+            console.error(err)
+            res.send(err);
+        }
+    }
+}
+
+export default new QuoteController;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseController.html">BaseController</a></li><li><a href="ChatContoller.html">ChatContoller</a></li><li><a href="QuoteController.html">QuoteController</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 22:51:21 GMT+0400 (+04)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
