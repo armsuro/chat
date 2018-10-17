@@ -52,5 +52,12 @@ cd ./microservice_chat && npm i && npm start
 ```sh
 cd ./microservice_api && npm i && npm run test
 ```
+### Testing Users
+```sh
+[
+	{'username': 'user1', 'password': 'password', 'type': 'Customer'},
+ 	{'username': 'user2', 'password': 'password', 'type': 'Repairshop'}
+]
+```
 ### Postman collection in folder ``` ./api-testing/postman```
 ### Websocket tests in folder ``` ./api-testing/websocket```
