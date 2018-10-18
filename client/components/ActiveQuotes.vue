@@ -3,7 +3,7 @@
       <h4>Active Quotes</h4>
       <b-table striped hover :items="quoteData" :fields="fields">
         <template slot="actions" slot-scope="row">
-          <b-button size="sm" :variant="'success'" @click="joinQuote(row)">
+          <b-button size="sm" :variant="'success'" @click="joinQuote(row.item.id)">
             Join
           </b-button>
           <b-button size="sm" :variant="'info'" @click="editQuote(row)" v-if="checkCustomer()">
