@@ -26,6 +26,7 @@
     </create-quote-form>
 
     <pending-quotes 
+      :joinQuote="joinQuote"
       :repairShopData="repairShopData"
       :fields="fields"
       :assignToQuote="assignToQuote"
@@ -115,6 +116,8 @@ export default {
         }
         const response = await axios().post(`${API}/quote`, { name });
         this.quoteData.push(response.data.data);
+        this.quoteData[this.quoteData.length-1].username = this.$store.state.user.username;
+        this.form.name = '';
         this.hideQuoteForm = true;
       } catch (error) {
         this.form.error = true;
@@ -144,14 +147,14 @@ export default {
         const response = await axios().put(
           `${API}/quote/assign/${row.item.id}`
         );
-        this.joinQuote();
+        this.joinQuote(row.item);
       } catch (error) {
         alert(error);
       }
     },
 
-    async joinQuote({ item }) {
-      this.$router.push(`/quote/${item.id}`);
+    async joinQuote(id) {
+      this.$router.push(`/quote/${id}`);
     },
 
     checkRepairshop() {
