@@ -7,12 +7,8 @@ export default async function authenticate(req, res, next) {
             authorization,
         } = req.headers;
 
-        console.log(authorization, 123123);
-        
         const token = await TokenService.verify(authorization);
 
-        console.log(token, 321321);
-        
         if (!authorization || !token) {
             res.status(401);
             return res.json(ResponseService.generate('unauthorized'));

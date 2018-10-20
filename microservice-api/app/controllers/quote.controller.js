@@ -19,6 +19,7 @@ class QuoteController extends BaseController {
      * create function send data to chat microservice and create new quote.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     create = async (req, res) => {
         const data = await Broker.get('chat:createQuote', {
@@ -32,6 +33,7 @@ class QuoteController extends BaseController {
      * update function send data to chat microservice and update quote.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     update = async (req, res) => {
         req.body.id = req.params.id;
@@ -46,6 +48,7 @@ class QuoteController extends BaseController {
      * destroy function send data to chat microservice and delete quote.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     destroy = async (req, res) => {
         req.body.id = req.params.id;
@@ -60,10 +63,9 @@ class QuoteController extends BaseController {
      * get create request to chat microservice and get all qoutes.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     get = async (req, res) => {
-        console.log(11111111111111, req, 2222222222 );
-        
         const data = await Broker.get('chat:getAllQuote', {
             'user': req.user,
             'data': req.body,
@@ -75,6 +77,7 @@ class QuoteController extends BaseController {
      * assign funtion assign repairshop to quote.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     assign = async (req, res) => {
         const data = await Broker.get('chat:assignQuote', {
@@ -88,6 +91,7 @@ class QuoteController extends BaseController {
      * waiting funtion get all quotes when dont have repairshop.
      * @param {Object} req - Request body.
      * @param {Object} res - Response.
+     * @return {Object} - response
      */
     waiting = async (req, res) => {
         const data = await Broker.get('chat:waitingQuotes', {

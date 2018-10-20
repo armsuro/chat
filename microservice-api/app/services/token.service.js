@@ -26,7 +26,7 @@ class TokenService {
      * @return {Object} data.
      */
     generate(user) {
-        return this.JWT.sign(Constants.security.sessionSecret, {
+        return this.JWT.sign(Constants.security.sessionSecret + user.id, {
           ttl: Constants.security.sessionExpiration,
           dataToken: user,
         });

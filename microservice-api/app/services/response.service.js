@@ -10,71 +10,71 @@ class ResponseService {
    */
   constructor() {
     this.messages = {
-      success: {
-        status: 'Success.',
-        message: 'Successfully processed.',
-        header_status: 200
+      'success': {
+        'status': 'Success.',
+        'message': 'Successfully processed.',
+        'header_status': 200,
       },
-      created: {
-        status: 'Created.',
-        message: 'Successfully processed.',
-        header_status: 201
+      'created': {
+        'status': 'Created.',
+        'message': 'Successfully processed.',
+        'header_status': 201,
       },
-      no_data: {
-        status: 'No Content.',
-        message: 'No Data Matching For Your Request.',
-        header_status: 200
+      'no_data': {
+        'status': 'No Content.',
+        'message': 'No Data Matching For Your Request.',
+        'header_status': 203,
       },
-      bad_request: {
-        status: 'Bad Request.',
-        message: 'Bad Request.',
-        header_status: 400
+      'bad_request': {
+        'status': 'Bad Request.',
+        'message': 'Bad Request.',
+        'header_status': 400,
       },
-      unauthorized: {
-        status: 'Unauthorized.',
-        message: 'Unauthorized.',
-        header_status: 401
+      'unauthorized': {
+        'status': 'Unauthorized.',
+        'message': 'Unauthorized.',
+        'header_status': 401,
       },
-      forbidden: {
-        status: 'Forbidden.',
-        message: 'Forbidden.',
-        header_status: 403
+      'forbidden': {
+        'status': 'Forbidden.',
+        'message': 'Forbidden.',
+        'header_status': 403,
       },
-      not_found: {
-        status: 'Not Found.',
-        message: 'Not Found.',
-        header_status: 404
+      'not_found': {
+        'status': 'Not Found.',
+        'message': 'Not Found.',
+        'header_status': 404,
       },
-      not_allowed: {
-        status: 'Method Not Allowed.',
-        message: 'Method Not Allowed.',
-        header_status: 405
+      'not_allowed': {
+        'status': 'Method Not Allowed.',
+        'message': 'Method Not Allowed.',
+        'header_status': 405,
       },
-      unprocessable: {
-        status: 'Unprocessable Entity.',
-        message: 'Unprocessable Entity.',
-        header_status: 422
+      'unprocessable': {
+        'status': 'Unprocessable Entity.',
+        'message': 'Unprocessable Entity.',
+        'header_status': 422,
       },
-      login_timeout: {
-        status: 'Login Timeout.',
-        message: 'Login Timeout.',
-        header_status: 401
+      'login_timeout': {
+        'status': 'Login Timeout.',
+        'message': 'Login Timeout.',
+        'header_status': 401,
       },
-      unavailable: {
-        status: 'Unavailable For Legal Reasons.',
-        message: 'Check Your Access To This Action.',
-        header_status: 451
+      'unavailable': {
+        'status': 'Unavailable For Legal Reasons.',
+        'message': 'Check Your Access To This Action.',
+        'header_status': 451,
       },
-      server_error: {
-        status: 'Internal Server Error.',
-        message: 'Please try later.',
-        header_status: 500
+      'server_error': {
+        'status': 'Internal Server Error.',
+        'message': 'Please try later.',
+        'header_status': 500,
       },
-      bad_gateway: {
-        status: 'Bad Gateway.',
-        message: 'Bad Gateway.',
-        header_status: 502
-      }
+      'bad_gateway': {
+        'status': 'Bad Gateway.',
+        'message': 'Bad Gateway.',
+        'header_status': 502,
+      },
     };
   }
 
@@ -100,7 +100,7 @@ class ResponseService {
       data,
       status: obj['status'],
       http_status: obj['header_status'],
-      message: message ? message : obj['message']
+      message: message ? message : obj['message'],
     };
   }
 }

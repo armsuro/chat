@@ -44,32 +44,30 @@ class UserController extends BaseController {
                 'status': 'success',
                 'data': Object.assign(user.toJSON(), {
                     token,
-                })
-            }
+                }),
+            };
             return this.handleResponse(userData, res);
         } catch (err) {
-            console.error(err)
             return this.handleResponse({
                 'status': 'server_error',
                 'data': err,
-            }, res)
+            }, res);
         }
     }
 
     /**
      * Logout function.
-     * @param {Object} {body} - Request body.
+     * @param {Object} req - Request.
      * @param {Object} res - Response.
      * @return {Object} res - Response.
      */
     logout = async(req, res) => {
         try {
-            const a = await TokenService.destroy(req.user.rjwt);
+            await TokenService.destroy(req.user.rjwt);
             return this.handleResponse({
                 'status': 'no_data',
             }, res);
         } catch (err) {
-            console.error(err)
             return this.handleResponse({
                 'status': 'server_error',
                 'data': err,
