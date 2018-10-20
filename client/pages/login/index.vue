@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie';
 import axios from '../../plugins/axios';
 import { API } from '../../constants/env-vars';
 import { mapMutations } from 'vuex';

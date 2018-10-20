@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <h1>Dashboard</h1>
-    <!-- <log-out class="logout"></log-out> -->
+    <log-out class="logout"></log-out>
     <active-quotes :quoteData="quoteData"
       :fields="fields"
       :deleteQuote="deleteQuote"
@@ -44,7 +44,6 @@ import CreateQuoteForm from '~/components/CreateQuoteForm';
 import LogOut from "~/components/LogOut";
 import { API } from '~/constants/env-vars.js';
 import { CUSTOMER, REPAIR_SHOP } from '~/constants/user-types';
-import Cookie from 'js-cookie';
 
 export default {
   name: 'dashboard',
@@ -142,12 +141,12 @@ export default {
       }
     },
 
-    async assignToQuote(row) {
+    async assignToQuote(id) {
       try {
         const response = await axios().put(
-          `${API}/quote/assign/${row.item.id}`
+          `${API}/quote/assign/${id}`
         );
-        this.joinQuote(row.item);
+        this.joinQuote(id);
       } catch (error) {
         alert(error);
       }

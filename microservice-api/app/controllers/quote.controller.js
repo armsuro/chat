@@ -62,6 +62,8 @@ class QuoteController extends BaseController {
      * @param {Object} res - Response.
      */
     get = async (req, res) => {
+        console.log(11111111111111, req, 2222222222 );
+        
         const data = await Broker.get('chat:getAllQuote', {
             'user': req.user,
             'data': req.body,

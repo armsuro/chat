@@ -1,6 +1,5 @@
 <template>
   <b-container fluid>
-    <!-- <log-out class="my-1 logout"></log-out> -->
     <h1 class="header">Quote</h1>
     <div class="history">
       <div class="history__repairshop-block history__repairshop-block--background"
@@ -18,7 +17,8 @@
         <b-form-textarea
           v-model="message" 
           class="new-message__chat-block--size"
-          placeholder="Enter message">
+          placeholder="Enter message"
+          v-on:keyup.13="send($event)">
         </b-form-textarea>
         <b-button :variant="'success'" 
           class="new-message__send-button new-message__send-button--position"
