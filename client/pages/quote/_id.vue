@@ -2,6 +2,9 @@
   <b-container fluid>
     <h1 class="header">Quote</h1>
     <div class="history">
+      <div>
+        <nuxt-link to="/dashboard">Dashboard/</nuxt-link>quote/{{$route.params.id}}
+      </div>
       <div class="history__repairshop-block history__repairshop-block--background"
         v-for="item in history"
         v-bind:key="item.id"
@@ -17,8 +20,7 @@
         <b-form-textarea
           v-model="message" 
           class="new-message__chat-block--size"
-          placeholder="Enter message"
-          v-on:keyup.13="send($event)">
+          placeholder="Enter message">
         </b-form-textarea>
         <b-button :variant="'success'" 
           class="new-message__send-button new-message__send-button--position"
